@@ -37,6 +37,7 @@ jobs:
       #   run: gpg -K
       - name: Generate go.sum file
         run: go mod tidy
+        
       - name: Run goreleaser
         uses: goreleaser/goreleaser-action@v4
         with:
