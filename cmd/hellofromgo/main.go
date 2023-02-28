@@ -12,5 +12,8 @@ func main() {
 	http.HandleFunc("/home", func(w http.ResponseWriter, r *http.Request) {
 		fmt.Fprintf(w, "Home sweet home.")
 	})
+	http.HandleFunc("/shopping", func(w http.ResponseWriter, r *http.Request) {
+		fmt.Fprintf(w, "Run.")
+	})
 	http.ListenAndServe(":8080", nil)
 }
