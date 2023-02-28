@@ -1,2 +1,13 @@
 builds:
 - main: ./cmd/hellofromgo/
+
+archives:
+  - name_template: "{{ .ProjectName }}_{{ .Tag }}_{{ .Os }}_{{ .Arch }}"
+  - name_template: "{{ .ProjectName }}_{{ .Tag }}_checksums.txt"
+    format: checksum
+
+checksum:
+  name_template: "{{ .ProjectName }}_{{ .Tag }}_checksums.txt"
+
+release:
+  checksum: true
