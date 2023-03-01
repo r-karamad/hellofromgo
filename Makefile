@@ -1,4 +1,4 @@
-.PHONY: docker certificate test
+.PHONY: docker certificate tests
 
 docker: ## Prepare docker environment
   sudo apt update
@@ -13,8 +13,6 @@ docker: ## Prepare docker environment
 
 certificate: ## Generate self-signed certificate
   openssl req -x509 -newkey rsa:4096 -nodes -keyout key.pem -out cert.pem -days 365
-
-pytest: ## Run python test
 
 tests:
   curl -s -o /dev/null -w "%{http_code}" https://ec2-3-71-23-4.eu-central-1.compute.amazonaws.com/ | grep -q 200
