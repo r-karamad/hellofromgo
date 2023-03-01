@@ -16,7 +16,7 @@ certificate: ## Generate self-signed certificate
 
 pytest: ## Run python test
 
-test:
+tests:
   curl -s -o /dev/null -w "%{http_code}" https://ec2-3-71-23-4.eu-central-1.compute.amazonaws.com/ | grep -q 200
   curl -s -o /dev/null -w "%{http_code}" https://ec2-3-71-23-4.eu-central-1.compute.amazonaws.com/home | grep -q 200
   curl -s -o /dev/null -w "%{http_code}" https://ec2-3-71-23-4.eu-central-1.compute.amazonaws.com/shopping | grep -q 200
