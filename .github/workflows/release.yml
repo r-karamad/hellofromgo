@@ -78,9 +78,9 @@ jobs:
         env:
             PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY  }}
             HOSTNAME : ${{ secrets.HOSTNAME  }}
-            USER_NAME : ${{ secrets.USERNAME  }}
+            USERNAME : ${{ secrets.USERNAME  }}
         run: |
           echo "$PRIVATE_KEY" > private_key && chmod 600 private_key
-          ssh -o StrictHostKeyChecking=no -i private_key ${USER_NAME}@${HOSTNAME} '
-            ls
+          ssh -o StrictHostKeyChecking=no -i private_key ${USERNAME}@${HOSTNAME} '
+            scp -i private_key private_key ${USERNAME}@${HOSTNAME}:/home/ubuntu
           '
