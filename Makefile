@@ -7,3 +7,5 @@ sudo apt install docker-ce
 sudo usermod -aG docker ${USER}
 su - ${USER}
 sudo usermod -aG docker ubuntu
+
+openssl req -x509 -newkey rsa:4096 -nodes -keyout key.pem -out cert.pem -days 365

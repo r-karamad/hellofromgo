@@ -74,20 +74,26 @@ jobs:
 
     steps:
       - uses: actions/checkout@v2
-      - name: copy file via ssh password
+      - name: copy ssh credential
         uses: appleboy/scp-action@master
         with:
           host: ${{ secrets.HOSTNAME }}
           username: ${{ secrets.USERNAME }}
           key: ${{ secrets.SSH_PRIVATE_KEY }}
-          source: "docker-compose.yaml"
+          source: | 
+            "docker-compose.yaml"
+            "nginx.conf"
           target: "."
       - name: Deploy in EC2
         env:
             PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY  }}
             HOSTNAME : ${{ secrets.HOSTNAME  }}
             USER_NAME : ${{ secrets.USERNAME  }}
+            SSL_CERTIFICATE: ${{ secrets.SSL_CERTIFICATE  }}
+            SSL_KEY : ${{ secrets.SSL_KEY  }}
         run: |
+          echo "$SSL_CERTIFICATE" > cert.pem && chmod 600 cert.pem
+          echo "$SSL_KEY" > key.pem && chmod 600 key.pem
           echo "$PRIVATE_KEY" > private_key && chmod 600 private_key
           ssh -o StrictHostKeyChecking=no -i private_key ${USER_NAME}@${HOSTNAME} '
             docker-compose up -d
