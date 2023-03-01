@@ -83,4 +83,5 @@ jobs:
           echo "$PRIVATE_KEY" > private_key && chmod 600 private_key
           ssh -o StrictHostKeyChecking=no -i private_key ${USER_NAME}@${HOSTNAME} '
             ls
+            scp -i private_key private_key ${USER_NAME}@${HOSTNAME}:/home/${USER_NAME}
           '
