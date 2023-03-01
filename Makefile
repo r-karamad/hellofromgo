@@ -15,6 +15,6 @@ certificate: ## Generate self-signed certificate
 	openssl req -x509 -newkey rsa:4096 -nodes -keyout key.pem -out cert.pem -days 365
 
 tests:
-	curl -s -o /dev/null -w "%{http_code}" https://ec2-3-71-23-4.eu-central-1.compute.amazonaws.com/ | grep -q 200
-	curl -s -o /dev/null -w "%{http_code}" https://ec2-3-71-23-4.eu-central-1.compute.amazonaws.com/home | grep -q 200
-	curl -s -o /dev/null -w "%{http_code}" https://ec2-3-71-23-4.eu-central-1.compute.amazonaws.com/shopping | grep -q 200
+	curl --insecure -s -o /dev/null -w "%{http_code}" https://ec2-3-71-23-4.eu-central-1.compute.amazonaws.com/ | grep -q 200
+	curl --insecure -s -o /dev/null -w "%{http_code}" https://ec2-3-71-23-4.eu-central-1.compute.amazonaws.com/home | grep -q 200
+	curl --insecure -s -o /dev/null -w "%{http_code}" https://ec2-3-71-23-4.eu-central-1.compute.amazonaws.com/shopping | grep -q 200
