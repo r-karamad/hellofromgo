@@ -95,11 +95,11 @@ jobs:
             PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY  }}
             HOSTNAME : ${{ secrets.HOSTNAME  }}
             USER_NAME : ${{ secrets.USERNAME  }}
-            SSL_CERTIFICATE: ${{ secrets.SSL_CERTIFICATE  }}
-            SSL_KEY : ${{ secrets.SSL_KEY  }}
+            CERTIFICATE: ${{ secrets.SSL_CERTIFICATE  }}
+            KEY : ${{ secrets.SSL_KEY  }}
         run: |
-          echo "$SSL_CERTIFICATE" > cert.pem && chmod 600 cert.pem
-          echo "$SSL_KEY" > key.pem && chmod 600 key.pem
+          echo "$CERTIFICATE" > cert.pem && chmod 600 cert.pem
+          echo "$KEY" > key.pem && chmod 600 key.pem
           echo "$PRIVATE_KEY" > private_key && chmod 600 private_key
           ssh -o StrictHostKeyChecking=no -i private_key ${USER_NAME}@${HOSTNAME} '
             docker-compose up -d
