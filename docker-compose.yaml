@@ -7,8 +7,8 @@ services:
   nginx:
     image: nginx:latest
     ports:
-      - "8081:8080"
-      - "8082:8080"
+      - "80:80"
+      - "443:443"
     volumes:
       - /home/ubuntu/nginx.conf:/etc/nginx/conf.d/default.conf
       - /home/ubuntu/cert.pem:/etc/nginx/cert.pem
